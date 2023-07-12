@@ -1,0 +1,53 @@
+<html lang="en">
+ <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/header.ejs') %>
+    
+    <h1>
+        <%= objArticle.title  %>
+    </h1>
+
+
+    <p style="margin-top: 30px; color: blue; font-size: 22px; margin-bottom: 10px; text-align: center;">
+        <%= objArticle.body %>
+    </p>
+    
+
+    <button data-linkid ="<%= objArticle._id %>" class="create">Delete This Article</button>
+
+    <%- include('./partials/footer.ejs') %>
+
+
+    <script>
+        // this code to specific id for button in  above 
+        const btnelement = document.querySelector(".create");
+        const articleId = btnelement.getAttribute("data-linkid");
+        //console.log(articleId);
+
+        btnelement.addEventListener("click", (eo) =>
+        {
+            fetch(`/all-articles/${articleId}` , {method : "Delete"})
+           .then((response) => response.json())
+           // هنا انا راح اخذ الداتا واعمل حذف بناءا على المعلومات يلي اجتني 
+           // يجب عند كتابة السطر الذي في الاسفل ابن يتم ارسال البيانات من ابب دوت جي اس فايل 
+           // هون انا بعمل ريدايركت انو لما احذف بوديني على الصفحة الرئيسية حسب المعلومات الي بعثلي اياها 
+           .then((data) => window.location.href = data.mylink  /* console.log(data) */)
+           .catch((err) =>
+            {
+            console.log(err);
+            })
+        });
+
+       // fetch all articel by id and we use method delete to delete by id 
+       // what is data ??? 
+
+        fetch(`/all-articles/${articleId}` , {method : "Delete"})
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((err) =>
+        {
+            console.log(err);
+        })
+    </script>
+</body>
+</html>

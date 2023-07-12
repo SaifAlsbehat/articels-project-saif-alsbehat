@@ -1,0 +1,19 @@
+<script>
+    // Get the current date
+    var currentDate = new Date();
+
+    // Get the <span> element by its ID
+    var dateSpan = document.getElementById("currentDate");
+
+    // Set the content of the <span> element to the current date
+    dateSpan.textContent = currentDate.toLocaleDateString();
+</script>
+ <footer>
+    <p class="follow">
+        يُمكنك متابعة اخر أخبار الموقع و القناة علي
+
+        <a href=""> الفيسبوك </a>
+    </p>
+
+    <p class="design">Designed and developed by Saif Alsbehat © <span id="currentDate"></span></p>
+</footer>
